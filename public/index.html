@@ -18,8 +18,7 @@
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
-    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous"  referrerpolicy="no-referrer" /> 
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
@@ -28,9 +27,27 @@
   <body>
     <!-- Top nav bar (fixed) -->
     <nav>
-      <span>tweeter</span>
+      <span> 
+        <label class="logo">tweeter</label> 
+        <div style="float:right; font: sans-serif; padding-right: 1.5em; margin-top: 30px;">
+        <div><b>Write</b> a new tweet</div>
+        <div style="color: red; text-align: center;"><i class="fas fa-angle-double-down"></i></div>
+        </div>
+      </span>
+      
+
     </nav>
 
+    <header>
+      <div>
+          <img src="/images/profile-hex.png"> 
+      </div>
+      <br>
+      <div>
+          <h2>Nivedha Selvan</h2>
+      </div>
+  </header>
+    
     <!-- Page-specific (main) content here -->
     <main class="container"></main>
   </body>
