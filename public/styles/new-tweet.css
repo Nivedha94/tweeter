@@ -24,12 +24,13 @@
 .new-tweet textarea {
   grid-area: textArr;
   resize: none;  /* Disable multi-row */
-  color: #545149;
   font-weight: bold;
-  background-color: #f4f1ec;
+  color: #545149;
   border: 0;
   border-bottom: 4px solid;
   margin-bottom: 10px;
+  border-color: #545149;
+  background-color: #f4f1ec;
 }
 .new-tweet input {
   grid-area: inputArr;
@@ -40,5 +41,10 @@
 }
 .new-tweet .counter {
   grid-area: countArr;
+  font-family: 'Bungee', sans-serif; /* Logo */
   justify-self: end;
+}
+
+.overfill {
+  color:red;
 }

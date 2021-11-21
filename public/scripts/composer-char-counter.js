@@ -1,12 +1,16 @@
-$(document).ready(function () {
-  $(".new-tweet form textarea").on('keydown', function () {
-    let num = this.value.length;
-    let counter = $(".new-tweet form textarea").siblings('.counter').text(140 - num)
+$(document).ready(function() {
+  const maxChar = $(".counter").text();
 
-    if (num > 140) {
-      counter.css("color", "red");
+  $("textarea").keyup(function() {
+
+    const $counter = $(this).closest("form").find(".counter");
+
+    $($counter).text(maxChar - $(this).val().length);
+    if ($(this).val().length > maxChar) {
+      $($counter).addClass('overfill');
+    }
+    if ($(this).val().length <= maxChar) {
+      $($counter).removeClass('overfill');
     }
   });
-  console.log("Working?");
-
-}); 
+});
