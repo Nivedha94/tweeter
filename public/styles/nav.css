@@ -17,7 +17,6 @@
 
  nav ul {
   display: flex;
-  align-items: center;
   flex-flow: row;
   justify-content: space-between;
 
@@ -25,21 +24,23 @@
  }
 
  #logo {
-  font-family: 'Bungee', sans-serif; /* Logo */
+  font-family: 'Bungee', sans-serif;
  }
 
  #writeTweet {
   font-size: 1.25rem;
  }
 
- nav > ul > div {
+ nav li#writeTweet {
   display: flex;
   flex-flow: column;
-  align-items: center;
+  
  }
 
  nav i {
   color: #DE5039;
+  align-self: center;
+  margin: 0.3vh;
  }
 
 
