@@ -37,13 +37,13 @@ const data = [
 <article class="tweet">
   <header>
     <img src="https://i.imgur.com/73hZDYK.png" alt="Newton">
-    <h3 class="name">Newton</h3>
-    <p class="handle">@SirIsaac</p>
+    <h3>Newton</h3>
+    <p>@SirIsaac</p>
   </header>
   <p>If I have seen further it is by standing on the shoulders of giants</p>
   <footer>
     <p><time datetime="">10 days ago</time></p>
-    <div class="tools">
+    <div>
       <i class="fas fa-flag fa-xs"></i>
       <i class="fas fa-retweet fa-xs"></i>
       <i class="fas fa-heart fa-xs"></i>
@@ -53,60 +53,89 @@ const data = [
 */
 
 const createTweetElement = function(tweet) {
+
+  /*
+   * Main Structure
+   */
   const $tweet = $('<article>').addClass('tweet');
+  const $tweet_header = $('<header>');
+  const $tweet_content = $('<p>');
+  const $tweet_footer = $('<footer>');
 
-  const $header = $('<header>');
+  /*
+   * Header (Avatar, Name and Handle)
+   */
 
-  $('<img>')
+  const $tweet_avatar = $('<img>');
+  const $tweet_userName = $('<h3>');
+  const $tweet_userHandle = $('<p>');
+
+  $tweet_avatar
     .attr('src', tweet.user.avatars)
-    .attr('alt', tweet.user.name)
-    .appendTo($header);
+    .attr('alt', tweet.user.name);
 
-  $('<h3>')
-    .addClass('name')
-    .text(tweet.user.name)
-    .appendTo($header);
+  $tweet_userName
+    .text(tweet.user.name);
 
-  $('<p>')
-    .addClass('handle')
-    .text(tweet.user.handle)
-    .appendTo($header);
+  $tweet_userHandle
+    .text(tweet.user.handle);
 
-  $tweet.append($header);
+  /* Assembly */
+  $tweet_header
+    .append($tweet_avatar)
+    .append($tweet_userName)
+    .append($tweet_userHandle);
+
+    /*
+   * Tweet Content
+   */
+
+  $tweet_content.text(tweet.content.text);
 
 
-  $('<p>')
-    .text(tweet.content.text)
-    .appendTo($tweet);
+  /*
+   * Footer (CreatedOn and Tools)
+   */
 
-  const $footer = $('<footer>');
+  /* Time Section */
+  const $tweet_createdOn = $('<p>');
+  const $tweet_createdTime = $('<time>');
 
-  const $timeP = $('<p>');
+  const createdAt = new Date(tweet.created_at);
 
-  $('<time>')
-    .attr('datetime', new Date(tweet.created_at))
-    .text(new Date(tweet.created_at))
-    .appendTo($timeP);
+  $tweet_createdTime
+    .attr('datetime', createdAt)
+    .text(createdAt);
 
-  $footer.append($timeP);
+  $tweet_createdOn
+    .append($tweet_createdTime);
 
-  const $divTools = $('<div>').addClass('tools');
+  /* Tools Section */
+  const $tweet_toolBox = $('<div>');
 
-  $('<i>')
-    .addClass('fas fa-flag fa-xs')
-    .appendTo($divTools);
+  const $tweet_tools_flag = $('<i>').addClass('fas fa-flag fa-xs');
+  const $tweet_tools_reTweet = $('<i>').addClass('fas fa-retweet fa-xs');
+  const $tweet_tools_heart = $('<i>').addClass('fas fa-heart fa-xs');
 
-  $('<i>')
-    .addClass('fas fa-retweet fa-xs')
-    .appendTo($divTools);
+  $tweet_toolBox
+    .append($tweet_tools_flag)
+    .append($tweet_tools_reTweet)
+    .append($tweet_tools_heart);
 
-  $('<i>')
-    .addClass('fas fa-heart fa-xs')
-    .appendTo($divTools);
+  /* Assembly */
+  $tweet_footer
+    .append($tweet_createdOn)
+    .append($tweet_toolBox);
 
-  $footer.append($divTools);
+  /*
+   * Tweet Assembly
+   */
 
-  $tweet.append($footer);
+  $tweet
+  .append($tweet_header)
+  .append($tweet_content)
+  .append($tweet_footer);
+
 
   return $tweet;
 };
