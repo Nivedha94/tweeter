@@ -1,13 +1,17 @@
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
+header {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  background-color: #8a8586;
+  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
 }
 
-header {
-  height: 400px;
-  background-color: yellow;
-  text-align: center;
-  border-color: red;
+.img {
+  position: relative;
+  margin-left: 45%;
 }
+
+.name {
+  position: relative;
+  margin-left: 47%; 
+} 

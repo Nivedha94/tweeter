@@ -1,34 +1,25 @@
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
 nav {
-  background-color: #4056A1;
-  color: #FFFFFF;
+  background-color:#4056A1;
   height: 120px;
+  position: relative;
+  top: 0;
+  width: 100%;
+  font-family: 'Bungee', cursive;
+  color:#ffff;
 }
 
-label.logo {
-  margin:0;
-  border:0;
-  font-family: "Bungee";
-  padding-left: 1.5em;
-  font-size: 27px;
-}
+ .top-of-page {
+  display: flex;
+  justify-content: space-between;
+ }
 
-label.text {
-  display: block;
-  text-align: right;
-  margin-bottom: 100px;
-  font-size: 18px;
-  padding-right: 1.5em;
-  font-family: "Sans-Serif";
-  justify-content:right;
-  
-}
+ .tweeter {
+  position: relative;
+  top: 1.5em;
+  left: 1.5em;
+  right: 1.5em;
+  bottom: 1.5em;
+ }
 
 
 
