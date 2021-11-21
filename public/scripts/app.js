@@ -52,7 +52,7 @@ const data = [
 </article>
 */
 
-const createTweetElement = function(tweet) {
+const createTweetElement = tweet => {
 
   /*
    * Main Structure
