@@ -1,0 +1,65 @@
+/*
+ * Additional CSS can be defined below or in other CSS files, as per instructions
+ */
+ nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 120px; /* Project Requirements */
+  padding: 1.5em;
+
+  color: #FFFFFF;
+  background-color: $color-banner-blue;
+ }
+
+ nav ul {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  
+  list-style-type: none;
+ }
+/*
+ * Logo section
+ */
+ #logo {
+  font-family: 'Bungee', sans-serif;
+ }
+/*
+ * Write a new tweet section
+ */
+ #writeTweet {
+  font-size: 1.25rem;
+ }
+ li#writeTweet {
+  display: flex;
+  flex-flow: column;
+ }
+ #writeTweet i {
+  align-self: center;
+  margin: 0.3vh;
+  color: $color-soft-red;
+  padding: 1vh 1vw;
+  border : solid 4px rgba(255, 255, 255, 0.0);
+  border-radius: 40px;
+ }
+ #writeTweet i:hover,
+ #writeTweet i:focus,
+ #writeTweet i:active {
+  color: $color-vibrant-red;
+  border : solid 4px rgba(255, 255, 255, 0.3);
+  border-radius: 40px;
+  cursor: pointer;
+ }
+ /*
+ * Red Arrow Animation
+ */
+ .moveUpDown {
+  animation: mover 1s infinite alternate;
+}
+@keyframes mover {
+  0% { transform: translateY(-15px); } /* Negative -> up */
+  100% { transform: translateY(-3px); } /* Positive -> down */
+}
