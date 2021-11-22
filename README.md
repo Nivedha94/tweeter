@@ -9,13 +9,13 @@ This repository is the starter code for the project: Students will fork and clon
 ### Desktop Mode - Highlighted item
 
 Desktop mode
-!["Screenshot of tweet box desktop mode"](#)
+!["Screenshot of tweet box desktop mode"](https://github.com/Nivedha94/tweeter/blob/master/docs/tweetbox-desktopmode.png?raw=true)
 
 Tablet mode
-!["Screenshot of tweet box tablet mode"](#)
+!["Screenshot of tweet box tablet mode"](https://github.com/Nivedha94/tweeter/blob/master/docs/tabletmode.png?raw=true)
 
 Mobile mode
-!["Screenshot of tweet box mobile mode"](#)
+!["Screenshot of tweet box mobile mode"](https://github.com/Nivedha94/tweeter/blob/master/docs/mobilemode.png?raw=true)
 
 
 ## Getting Started
