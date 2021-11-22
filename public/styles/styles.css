@@ -1,272 +1,348 @@
-@import url("https://fonts.googleapis.com/css?family=Bungee|Source+Sans+Pro:400,400i,700,700i&display=swap");
 /*
  * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
  * https://css-tricks.com/international-box-sizing-awareness-day/
  * Do not modify these two selectors, please
  */
-html {
-  box-sizing: border-box;
-  font-family: 'Source Sans Pro', sans-serif; }
-
-*, *:before, *:after {
-  box-sizing: inherit; }
-
-html {
-  scroll-behavior: smooth; }
-  scroll-behavior: smooth;
-  font-size: 16px; }
-
-body {
-  color: #545149;
-  background-color: #f4f1ec;
-  font-size: 1.5rem; }
-  body > header {
-    position: relative;
-    height: 400px;
-    /* Project Requirements */
-    width: 100%;
-    margin-top: 120px;
-    /* Project Requirements */
-    text-align: center;
-    color: #FFFFFF;
-    background-color: #CF9A3E;
-    background-image: url("/images/green-dust-and-scratches.png"); }
-    body > header > div {
-      margin-left: auto;
-      margin-right: auto; }
-
-main {
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  color: #545149;
-  background-color: #f4f1ec; }
-
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
+ @import url("https://fonts.googleapis.com/css?family=Bungee|Source+Sans+Pro:400,400i,700,700i&display=swap");
+ html {
+   box-sizing: border-box;
+   font-family: 'Source Sans Pro', sans-serif; }
+ 
+ *, *:before, *:after {
+   box-sizing: inherit; }
+ 
+ /*
+ * Quick Classes to help structure the elements
  */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  height: 120px;
-  /* Project Requirements */
-  padding: 1.5em;
-  color: #FFFFFF;
-  background-color: #4056A1; }
-
-nav ul {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  list-style-type: none; }
-
-/*
- * Logo section
- */
-#logo {
-  font-family: 'Bungee', sans-serif; }
-
-/*
- * Write a new tweet section
- */
-#writeTweet {
-  font-size: 1.25rem; }
-
-li#writeTweet {
-  display: flex;
-  flex-flow: column; }
-
-#writeTweet i {
-  align-self: center;
-  margin: 0.3vh;
-  color: #DE5039;
-  padding: 1vh 1vw;
-  border: solid 4px rgba(255, 255, 255, 0);
-  border-radius: 40px; }
-
-#writeTweet i:hover,
-#writeTweet i:focus,
-#writeTweet i:active {
-  color: red;
-  border: solid 4px rgba(255, 255, 255, 0.3);
-  border-radius: 40px;
-  cursor: pointer; }
-
-/*
- * Red Arrow Animation
- */
-.moveUpDown {
-  animation: mover 1s infinite alternate; }
-
-@keyframes mover {
-  0% {
-    transform: translateY(-15px); }
-  /* Negative -> up */
-  100% {
-    transform: translateY(-3px); }
-  /* Positive -> down */ }
-
-/*
- * Tweet List Styling
- */
-article.tweet {
-  border-color: #545149;
-  border: 4px solid;
-  margin: 2vh 3vw;
-  padding: 1vh 2vw; }
-
-  article.tweet > header {
-    display: flex;
-    flex-flow: row;
-    align-items: center; }
-    article.tweet > header img {
-      max-width: 64px;
-      max-height: 64px; }
-    article.tweet > header h3 {
-      padding-left: 0.5vw; }
-    article.tweet > header p {
-      margin-left: auto;
-      color: #888888;
-      opacity: 0; }
-  article.tweet > p {
-    border: 0;
-    border-bottom: 4px solid;
-    border-color: #545149;
-    margin-bottom: 0;
-    padding-bottom: 1em; }
-  article.tweet > footer {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    margin: 1vh 1vw;
-    padding: 0 1vw; }
-    article.tweet > footer p {
-      margin: 0; }
-    article.tweet > footer i {
-      color: #4056A1;
-      margin: 0.2vh 0.2vw; }
-/*
- * :hover
- */
-article.tweet:hover,
-article.tweet:focus,
-article.tweet:active {
-  box-shadow: 0.188em 0.188em 0.313em 0.375em #CCCCCC; }
-
-article.tweet:hover > header p,
-article.tweet:focus > header p,
-article.tweet:active > header p {
-  opacity: 1; }
-
-/*
- * New Tweet Styling
- */
-.new-tweet {
-  display: grid;
-  grid-template-areas: "error" "header" "form";
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-
-  margin: 2vh 3vw;
-  /*
-  * Grid: Header
+ /* Hides an element */
+ .hidden {
+   display: none; }
+ 
+ /*
+  * Animate Up and Down
   */
-  /*
-  * Grid: Form Section
+ .moveUpDown {
+   animation: mover 1s infinite alternate; }
+ 
+ html {
+   scroll-behavior: smooth;
+   font-size: 17px; }
+ 
+ body {
+   min-width: 350px;
+   color: #545149;
+   background-color: #f4f1ec;
+   font-size: 1.5rem; }
+   body > main {
+     display: flex;
+     flex-flow: column; }
+     body > main > header {
+       position: relative;
+       height: 400px;
+       /* Project Requirements */
+       width: 100%;
+       margin-top: 120px;
+       /* Project Requirements */
+       text-align: center;
+       color: white;
+       padding-top: 3%;
+       background-color: #CF9A3E;
+       background-image: url("/images/green-dust-and-scratches.png"); }
+       body > main > header > div {
+         margin-left: auto;
+         margin-right: auto; }
+ 
+ #container > section {
+   width: 90%;
+   margin-left: auto;
+   margin-right: auto; }
+ 
+ @media (min-width: 768px) {
+   html {
+     font-size: 16px; }
+   body > main {
+     flex-flow: row; }
+     body > main > header {
+       width: 33%;
+       height: auto;
+       padding-top: 5%; }
+     body > main > div {
+       width: 67%; }
+     body > main > #tweets {
+       margin-top: 120px;
+       /* Project Requirements */ } }
+ 
+ @media (min-width: 1024px) {
+   html {
+     font-size: 16px; }
+   body {
+     max-width: 1024px;
+     margin-left: auto;
+     margin-right: auto; } }
+ 
+ /*
+  * Additional CSS can be defined below or in other CSS files, as per instructions
   */
-  /*
-  * Grid: Form Section -> textArea Section
+ nav {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   z-index: 1;
+   min-width: 350px;
+   height: 120px;
+   /* Project Requirements */
+   padding: 1.5em;
+   color: white;
+   background-color: #4056A1;
+   display: flex;
+   flex-flow: row;
+   justify-content: space-between;
+   align-items: center;
+   /* Logo */ }
+   nav h1 {
+     font-family: "Bungee", sans-serif;
+     font-size: 2rem; }
+   nav div {
+     display: flex;
+     flex-flow: column;
+     /* Write a New Tweet */
+     /* Moving Arrows */ }
+     nav div h2 {
+       align-self: center;
+       display: none;
+       font-size: 1.75vmin; }
+     nav div i {
+       align-self: center;
+       color: #DE5039;
+       font-size: 2.6em;
+       padding: 0.1em; }
+ 
+ @keyframes mover {
+   0% {
+     transform: translateY(-15px); }
+   /* Negative -> up */
+   100% {
+     transform: translateY(30px); }
+   /* Positive -> down */ }
+       nav div i:hover, nav div i:focus, nav div i:active {
+         color: red;
+         cursor: pointer; }
+ 
+ @media (min-width: 768 px) {
+   nav {
+     /* Logo */ }
+     nav h1 {
+       font-size: 3vmin; }
+     nav div {
+       /* Write a New Tweet */
+       /* Moving Arrows */ }
+       nav div h2 {
+         font-size: 1.75vmin; } }
+ 
+ @media (min-width: 1024px) {
+   nav {
+     max-width: 1024px;
+     margin-left: auto;
+     margin-right: auto;
+     /* Logo */ }
+     nav h1 {
+       font-size: 3vmin; }
+     nav div {
+       /* Write a New Tweet */
+       /* Moving Arrows */ }
+       nav div h2 {
+         display: block;
+         font-size: 1.75vmin; }
+       nav div i {
+         font-size: 1.4em;
+         padding: 1vmin;
+         border: solid 4px rgba(255, 255, 255, 0);
+         border-radius: 40px; }
+   @keyframes mover {
+     0% {
+       transform: translateY(-15px); }
+     /* Negative -> up */
+     100% {
+       transform: translateY(5px); }
+     /* Positive -> down */ }
+         nav div i:hover, nav div i:focus, nav div i:active {
+           color: red;
+           border: solid 4px rgba(255, 255, 255, 0.3);
+           border-radius: 40px;
+           cursor: pointer; } }
+ 
+ /*
+  * Tweet List Styling
   */
-  /*
-  * Grid: Form Section -> tweetButton Section
-  */ }
-  .new-tweet h2 {
-    grid-area: header;
-    justify-self: center; }
-  .new-tweet form {
-    grid-area: form;
-    display: grid;
-    grid-template-areas: "textArea textArea textArea" "tweetButton . counter";
-    grid-template-columns: auto auto auto;
-    grid-template-rows: auto auto; }
-  .new-tweet textarea {
-    grid-area: textArea;
-    background-color: #f4f1ec;
-    /* Removes decoration to textArea */
-    resize: none;
-    outline: none;
-    color: #545149;
-    border: 0;
-    border-bottom: 4px solid;
-    border-color: #545149;
-    margin-bottom: 0.7vh; }
-  .new-tweet input {
-    grid-area: tweetButton;
-    justify-self: start;
-    font-family: "Bungee", sans-serif;
-    /* Logo */
-    font-size: 1.2rem;
-    color: white;
-    margin: 0.3vh 1vw;
-    padding: 0.5vh 0.5vw;
-    background-color: #4056A1; }
-
-
-  .new-tweet input:hover,
-  .new-tweet input:focus,
-  .new-tweet input:active {
-  cursor: pointer;
-  box-shadow: 1px 1px 2px 3px #CCCCCC; }
-
-/*
- * Grid: Form Section -> counter Section
+ article.tweet {
+   border-color: #545149;
+   border: 4px solid;
+   margin: 2vh 3vw;
+   padding: 1vh 2vw; }
+   article.tweet > header {
+     display: flex;
+     flex-flow: row;
+     align-items: center; }
+     article.tweet > header img {
+       display: none; }
+     article.tweet > header h3 {
+       padding-left: 0.02vmin; }
+     article.tweet > header > p {
+       display: none; }
+   article.tweet > body {
+     border: 0;
+     margin-bottom: 0;
+     padding-bottom: 1em; }
+   article.tweet > footer {
+     display: flex;
+     flex-flow: row;
+     justify-content: space-between;
+     margin: 1vmin;
+     padding: 0 1vw; }
+     article.tweet > footer p {
+       margin: 0;
+       width: 95%; }
+     article.tweet > footer > div {
+       display: none; }
+   article.tweet:hover, article.tweet:focus, article.tweet:active {
+     box-shadow: 0.188em 0.188em 0.313em 0.375em #CCCCCC; }
+     article.tweet:hover > header p,
+     article.tweet:hover > header p,
+     article.tweet:hover > header p, article.tweet:focus > header p,
+     article.tweet:focus > header p,
+     article.tweet:focus > header p, article.tweet:active > header p,
+     article.tweet:active > header p,
+     article.tweet:active > header p {
+       opacity: 1; }
+ 
+ @media (min-width: 600px) {
+   article.tweet > footer > div {
+     display: block;
+     width: 21%;
+     margin-left: auto; }
+     article.tweet > footer > div i {
+       color: #4056A1;
+       margin: 0.2vmin; } }
+ 
+ @media (min-width: 768px) {
+   article.tweet > header > p {
+     display: block;
+     margin-left: auto;
+     color: #888888;
+     opacity: 0; }
+   article.tweet > body {
+     border-bottom: 4px solid;
+     border-color: #545149; } }
+ 
+ @media (min-width: 1024px) {
+   article.tweet > header img {
+     display: inline;
+     max-width: 64px;
+     max-height: 64px; } }
+ 
+ /*
+  * New Tweet Styling
+  */
+ .new-tweet {
+   display: grid;
+   grid-template-areas: "error" "header" "form";
+   grid-template-columns: auto;
+   grid-template-rows: auto;
+   margin: 2.3rem;
+   width: 88%;
+   /*
+   * Possible Error
+   */
+   /*
+   * Grid: Header
+   */
+   /*
+   * Grid: Form Section
+   */
+   /*
+   * Grid: Form Section -> textArea Section
+   */
+   /*
+   * Grid: Form Section -> tweetButton Section
+   */ }
+   .new-tweet .overfill {
+     color: red; }
+   .new-tweet .counter {
+     grid-area: counter;
+     justify-self: end;
+     font-family: 'Bungee', sans-serif;
+     /* Logo */
+     margin: 0.3vh 1vw; }
+   .new-tweet .error-container {
+     grid-area: error;
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     color: red;
+     font-size: 2vmin;
+     border: 4px solid;
+     border-color: red;
+     border-radius: 25px;
+     margin: 1vmin; }
+     .new-tweet .error-container i {
+       padding: 0;
+       font-size: 2em; }
+       .new-tweet .error-container i:last-child {
+         padding-right: 2.5vmin; }
+     .new-tweet .error-container h1 {
+       margin: 0;
+       font-size: 2em; }
+   .new-tweet h2 {
+     grid-area: header;
+     justify-self: center; }
+   .new-tweet form {
+     grid-area: form;
+     display: grid;
+     grid-template-areas: "textArea textArea textArea" "tweetButton . counter";
+     grid-template-columns: auto auto auto;
+     grid-template-rows: auto auto; }
+   .new-tweet textarea {
+     grid-area: textArea;
+     background-color: #f4f1ec;
+     /* Removes decoration to textArea */
+     resize: none;
+     outline: none;
+     color: #545149;
+     border: 0;
+     border-bottom: 4px solid;
+     border-color: #545149;
+     margin-bottom: 0.7vh; }
+   .new-tweet input {
+     grid-area: tweetButton;
+     justify-self: start;
+     font-family: "Bungee", sans-serif;
+     /* Logo */
+     font-size: 1.2rem;
+     color: white;
+     margin: 0.3vh 1vw;
+     padding: 0.5vh 0.5vw;
+     background-color: #4056A1;
+     outline: 0; }
+     .new-tweet input:hover, .new-tweet input:focus, .new-tweet input:active {
+       cursor: pointer;
+       box-shadow: 1px 1px 2px 3px #CCCCCC; }
+ 
+ /*
+ * Style for "Back To Top" button, at bottom right
  */
-.new-tweet .counter {
-  grid-area: counter;
-  justify-self: end;
-  font-family: 'Bungee', sans-serif;
-  /* Logo */
-  margin: 0.3vh 1vw; }
-
-.backToTop {
-  position: fixed;
-  color: white;
-  background-color: red;
-  position: fixed;
-  bottom: 4vh;
-  right: 4vw;
-  font-size: 3rem;
-  width: 5rem;
-  height: 5rem;
-  padding: 1rem;
-  text-align: center;
-  border-radius: 40px; }
-
-.backToTop:hover,
-.backToTop:focus,
-.backToTop:active {
-  color: #CF9A3E;
-  
-.overfill {
-  color: red; }
-
-/*
-* Used in the tweet-new section
-*/
-div.error-container {
-  grid-area: error;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: red;
-  font-size: 1.2rem;
-  border: 4px solid;
-  border-color: red;
-  border-radius: 25px;
-  margin: 2vh 2vw;
-  padding: 0 3vw; }
-  div.error-container i {
-    font-size: 4rem; }
+ .backToTop {
+   position: fixed;
+   bottom: 4vmin;
+   right: 4vmin;
+   width: 5rem;
+   height: 5rem;
+   padding: 1rem;
+   border-radius: 40px;
+   color: white;
+   font-size: 3rem;
+   text-align: center;
+   background-color: red; }
+   .backToTop:hover, .backToTop:focus, .backToTop:active {
+     color: #4056A1;
+     box-shadow: 1px 1px 2px 3px #CCCCCC; }

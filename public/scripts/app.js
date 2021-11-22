@@ -4,30 +4,17 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-*/
-
- // Test / driver code (temporary). Eventually will get this from the server.
-
 
 /*
-<article class="tweet">
-  <header>
-    <img src="https://i.imgur.com/73hZDYK.png" alt="Newton">
-    <h3>Newton</h3>
-    <p>@SirIsaac</p>
-  </header>
-  <p>If I have seen further it is by standing on the shoulders of giants</p>
-  <footer>
-    <p><time datetime="">10 days ago</time></p>
-    <div>
-      <i class="fas fa-flag fa-xs"></i>
-      <i class="fas fa-retweet fa-xs"></i>
-      <i class="fas fa-heart fa-xs"></i>
-    </div>
-  </footer>
-</article>
-*/
+ * Frequently used pointers
+ */
+const MAX_CHARS = 140;
+const $button_backToTop = '.backToTop';
+const $button_writeTweet = '#writeTweet';
 
+/*
+* Create the HTML body of a new tweet
+*/
 const createTweetElement = tweet => {
 
   /*
@@ -35,7 +22,7 @@ const createTweetElement = tweet => {
    */
   const $tweet = $('<article>').addClass('tweet');
   const $tweet_header = $('<header>');
-  const $tweet_content = $('<p>');
+  const $tweet_body = $('<body>');
   const $tweet_footer = $('<footer>');
 
   /*
@@ -56,18 +43,22 @@ const createTweetElement = tweet => {
   $tweet_userHandle
     .text(tweet.user.handle);
 
-  /* Assembly */
+  /* Header Assembly */
   $tweet_header
     .append($tweet_avatar)
     .append($tweet_userName)
     .append($tweet_userHandle);
 
-    /*
-   * Tweet Content
+  /*
+   * Tweet Body
    */
+
+  const $tweet_content = $('<p>');
 
   $tweet_content.text(tweet.content.text);
 
+  $tweet_body
+    .append($tweet_content);
 
   /*
    * Footer (CreatedOn and Tools)
@@ -81,7 +72,7 @@ const createTweetElement = tweet => {
 
   $tweet_createdTime
     .attr('datetime', createdAt)
-    .text(createdAt);
+    .text(jQuery.timeago(createdAt)); /* Converts time to a readable string */
 
   $tweet_createdOn
     .append($tweet_createdTime);
@@ -97,8 +88,8 @@ const createTweetElement = tweet => {
     .append($tweet_tools_flag)
     .append($tweet_tools_reTweet)
     .append($tweet_tools_heart);
-
-  /* Assembly */
+ 
+  /* Footer Assembly */
   $tweet_footer
     .append($tweet_createdOn)
     .append($tweet_toolBox);
@@ -108,13 +99,17 @@ const createTweetElement = tweet => {
    */
 
   $tweet
-  .append($tweet_header)
-  .append($tweet_content)
-  .append($tweet_footer);
-
-
+    .append($tweet_header)
+    .append($tweet_body)
+    .append($tweet_footer);
+  
   return $tweet;
 };
+
+/*
+* Append an array of tweets at the end of #tweets-container
+* in reverse order than they were received
+*/
 
 const renderTweets = function(tweets) {
   tweets = tweets.reverse();
@@ -123,15 +118,28 @@ const renderTweets = function(tweets) {
   }
 };
 
+/*
+* Load all tweets
+*/
 const loadTweets = () => {
   $.get('/tweets')
     .then(tweets => renderTweets(tweets))
     .fail(error => console.error(error));
 };
 
+loadTweets(); /* Load all tweets manually */
+
+/*
+* Prepend a given tweet at the beginning of #tweets-container
+*/
+
 const renderLatestTweet = (tweet) => {
   $('#tweets-container').prepend(createTweetElement(tweet));
 };
+
+/*
+* Retrieve last (most recent) tweet in the Tweet storage array
+*/
 
 const loadLatestTweet = () => {
   $.get('/tweets')
@@ -139,70 +147,131 @@ const loadLatestTweet = () => {
     .fail(error => console.error(error));
 };
 
-loadTweets();
-
+/*
+* Hide error section
+* Set the message
+* Display error section
+*/
 const showError = (error) => {
-  $('.error-container').slideUp(400, () => {
+  $('.hidden.error').slideUp(400, () => {  /* Hide Section*/
+
     const $errorMsg = $('.error-container h1');
     $errorMsg.text(error);
-    $('.error-container').slideDown();
+ 
+    $('.hidden.error').slideDown(); /* Display Section*/
   });
 };
 
+/*
+* Hide error section
+*/
 const hideError = () => {
-  $('.error-container').slideUp();
+  $('.hidden.error').slideUp();
 };
 
-/* Post new tweet */
+/*
+* Validate that the tweet isn't empty
+* And that it's not more than the max number of chars
+* If it's invalid, display an error message
+*/
+const validateTweet = (tweetText) => {
+  if (!tweetText || tweetText === '\n') {
+    showError("Can't be empty");
+    return false;
+  } else if (tweetText.length > MAX_CHARS) {
+    showError(`Too many characters`);
+    return false;
+  }
+  return true;
+};
+
+/*
+* For a given form
+* Hide any errors
+* Empty the textArea
+* Reinitialize the counter value to MAX_CHARS
+*/
+const reinitializeForm = ($form) => {
+  const $inputText = $form.find('textarea[name="text"]');
+  const $counterValue = $form.find('span');
+  const $inputButton = $form.find('input[value="Tweet"]');
+
+  hideError();
+  $inputText.val('');
+  $counterValue.text(`${MAX_CHARS}`);
+};
+
+/*
+* Section With Event Listeners (active once document is ready)
+*/
 $(document).ready(function() {
-  $('.error-container').hide();  /* Starts error as hidden */
+
+  /*
+  * Listen to submit button
+  * If tweet passes validation, submit it
+  * reinitialize the form
+  * And load the tweet in the view
+  */
   $('form').submit(function(event) {
     const $form = $(this);
 
     const $inputText = $form.find('textarea[name="text"]');
-    const $counterValue = $form.find('span');
+    const $textToValidate = $inputText.val();
 
-    if (!$inputText.val()) {
-      showError("Tweet can't be empty");
-    } else if ($inputText.val().length > 140) {
-      showError("Tweet can't be more than 140 characters");
-    } else {
+    if (validateTweet($textToValidate)) {
       $.post($form.attr('action'), $form.serialize())
         .then(() => {
-          hideError();
+          reinitializeForm($form);
           loadLatestTweet();
-          $inputText.val('');
-          $counterValue.text('140');
         })
         .fail(error => console.error(error));
     }
 
     event.preventDefault();
   });
-  /* Hide and show new Tweet Section */
-  $('#writeTweet i').click(function () {
-    if ($('.new-tweet').is(':hidden')) {
-      $('.new-tweet').slideDown('slow');
+
+  /*
+  * Listen to click on 'Write a new Tweet'
+  * Hide and show New Tweet Section
+  */
+  $('#writeTweet i').click(function() {
+    const $hiddenTweetContainer = '#tweets > div.hidden';
+
+    /* If the section is hidden, show it and move the cursor in the textArea */
+    if ($($hiddenTweetContainer).is(':hidden')) {
+      $($hiddenTweetContainer).slideDown('slow');
       const $textArea = $("textarea[name='text']");
       $textArea.focus();
+
+    /* If the section is shown, hide it */
     } else {
-      $('.new-tweet').slideUp('slow');
+      $($hiddenTweetContainer).slideUp('slow');
     }
   });
 
-  /* Hide and show new Tweet Section */
+  /*
+  * Listen to Scroll Event on Document
+  * Hide and Show Buttons to move around the page
+  */
   $(document).scroll(function() {
+
+    /* If we're not at the top of the browser */
     if ($(window).scrollTop() !== 0) {
-      $("#writeTweet").hide();
-      $(".backToTop").show();
+      $($button_writeTweet).hide();
+      $($button_backToTop).show();
+
+    /* If we're at the top of the browser */
     } else {
-      $("#writeTweet").show();
-      $(".backToTop").hide();
+      $($button_writeTweet).show();
+      $($button_backToTop).hide();
     }
   });
 
-  $(".backToTop").click(function() {
+  /*
+  * Listen to Click on backToTop Button
+  * Scrolls back to the top of the page
+  */
+  $($button_backToTop).click(function() {
     window.scrollTo(0, 0);
   });
-
 });
