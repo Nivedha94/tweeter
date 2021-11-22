@@ -117,6 +117,7 @@ const createTweetElement = tweet => {
 };
 
 const renderTweets = function(tweets) {
+  tweets = tweets.reverse();
   for (const tweet of tweets) {
     $('#tweets-container').append(createTweetElement(tweet));
   }
@@ -128,4 +129,50 @@ const loadTweets = () => {
     .fail(error => console.error(error));
 };
 
+const renderLatestTweet = (tweet) => {
+  $('#tweets-container').prepend(createTweetElement(tweet));
+};
+
+const loadLatestTweet = () => {
+  $.get('/tweets')
+    .then(tweets => renderLatestTweet(tweets[tweets.length - 1]))
+    .fail(error => console.error(error));
+};
+
 loadTweets();
+
+/* Post new tweet */
+$(document).ready(function() {
+  $('form').submit(function(event) {
+    const $form = $(this);
+
+    const $inputText = $form.find('textarea[name="text"]');
+    const $counterValue = $form.find('span');
+
+    if (!$inputText.val()) {
+      alert("Tweet can't be empty");
+    } else if ($inputText.val().length > 140) {
+      alert("Tweet can't be more than 140 characters");
+    } else {
+      $.post($form.attr('action'), $form.serialize())
+        .then(() => {
+          loadLatestTweet();
+          $inputText.val('');
+          $counterValue.text('140');
+        })
+        .fail(error => console.error(error));
+    }
+
+    event.preventDefault();
+  });
+  /* Hide and show new Tweet Section */
+  $('#writeTweet i').click(function () {
+    if ($('.new-tweet').is(':hidden')) {
+      $('.new-tweet').slideDown('slow');
+      const $textArea = $("textarea[name='text']");
+      $textArea.focus();
+    } else {
+      $('.new-tweet').slideUp('slow');
+    }
+  });
+});
