@@ -48,3 +48,8 @@
 .overfill {
   color:red;
 }
+
+.tweet-icon {
+  color:yellow !important;
+  background-color:red !important;
+}

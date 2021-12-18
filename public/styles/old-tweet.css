@@ -54,3 +54,7 @@ article.tweet:hover, article.tweet:focus, article.tweet:active {
 article.tweet:hover p.avatar {
   opacity:1;
 } 
+
+article.tweet div.tools:hover{
+  color:yellow;
+}

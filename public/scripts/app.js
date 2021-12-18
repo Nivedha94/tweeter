@@ -80,9 +80,9 @@ const createTweetElement = tweet => {
   /* Tools Section */
   const $tweet_toolBox = $('<div>');
 
-  const $tweet_tools_flag = $('<i>').addClass('fas fa-flag fa-xs');
-  const $tweet_tools_reTweet = $('<i>').addClass('fas fa-retweet fa-xs');
-  const $tweet_tools_heart = $('<i>').addClass('fas fa-heart fa-xs');
+  const $tweet_tools_flag = $('<i>').addClass('fas fa-flag fa-xs tweet-icon');
+  const $tweet_tools_reTweet = $('<i>').addClass('fas fa-retweet fa-xs tweet-icon');
+  const $tweet_tools_heart = $('<i>').addClass('fas fa-heart fa-xs tweet-icon');
 
   $tweet_toolBox
     .append($tweet_tools_flag)

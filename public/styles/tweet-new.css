@@ -115,7 +115,7 @@ grid-template-rows: auto auto;
 .new-tweet .counter {
   grid-area: counter;
   justify-self: end;
-  ont-family: 'Bungee', sans-serif; /* Logo */
+  font-family: 'Bungee', sans-serif; /* Logo */
 
   margin: 0.3vh 1vw;
 } 
